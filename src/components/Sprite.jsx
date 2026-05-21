@@ -1,13 +1,18 @@
-// 이미지가 준비되면 src 받아서 표시, 없으면 placeholder 사각형
 export default function Sprite({
   x, y, width, height,
-  src,                  // 이미지 경로 (없으면 placeholder)
+  src,
   placeholderColor = '#666',
   placeholderBorder = 'white',
   rotation = 0,
   zIndex = 10,
+  highlighted = false,
+  smooth = false,
+  placeholderStyle = {},
   style = {},
 }) {
+  const borderColor = highlighted ? '#ffe89a' : placeholderBorder;
+  const borderWidth = highlighted ? 3 : 2;
+
   return (
     <div
       style={{
@@ -17,6 +22,7 @@ export default function Sprite({
         width,
         height,
         transform: rotation ? `rotate(${rotation}deg)` : undefined,
+        transition: smooth ? 'left 50ms linear, top 50ms linear' : undefined,
         zIndex,
         ...style,
       }}
@@ -29,9 +35,11 @@ export default function Sprite({
           style={{
             width: '100%',
             height: '100%',
-            imageRendering: 'pixelated', // 픽셀 아트용
+            imageRendering: 'pixelated',
             userSelect: 'none',
             pointerEvents: 'none',
+            outline: highlighted ? `${borderWidth}px solid ${borderColor}` : 'none',
+            outlineOffset: highlighted ? 2 : 0,
           }}
         />
       ) : (
@@ -39,8 +47,9 @@ export default function Sprite({
           width: '100%',
           height: '100%',
           background: placeholderColor,
-          border: `2px solid ${placeholderBorder}`,
+          border: `${borderWidth}px solid ${borderColor}`,
           borderRadius: 4,
+          ...placeholderStyle,
         }} />
       )}
     </div>

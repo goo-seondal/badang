@@ -59,3 +59,13 @@ export const PLACEHOLDER_COLORS = {
   coral:  '#d88090',
   turtle: '#5a7050',
 };
+
+// 쓰레기 정의 — 색/크기/무게/lerp를 한 곳에 모음
+// lerp: 드래그 시 손가락 따라오는 속도 (1=즉시, 0.15=많이 끌림)
+export const TRASH_TYPES = {
+  can:    { color: '#a85040', label: '캔',           size: { w: 14, h: 18 }, weight: 1, lerp: 1.0  },
+  ring:   { color: '#80a0c0', label: '플라스틱 고리', size: { w: 18, h: 8  }, weight: 1, lerp: 1.0  },
+  bottle: { color: '#7ba87b', label: '병',           size: { w: 10, h: 20 }, weight: 2, lerp: 0.5  },
+  bag:    { color: '#d8d8d0', label: '비닐봉지',     size: { w: 20, h: 16 }, weight: 3, lerp: 0.3  },
+  net:    { color: '#604030', label: '폐그물',       size: { w: 22, h: 22 }, weight: 4, lerp: 0.18 },
+};
